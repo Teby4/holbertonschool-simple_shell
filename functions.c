@@ -5,13 +5,11 @@
  * @sig: The signal number.
  */
 
-void ctrld(int sig)
+void ctrld(void)
 {
-  if (sig == SIGQUIT)
+	if	(feof(stdin)) 
 	{
-		write(STDOUT_FILENO, "\n", 1);
-		if (isatty(STDIN_FILENO) == 1)
-			printf("#cisfun$ ");
+		printf("\n");
 		exit(EXIT_SUCCESS);
 	}
 }

@@ -7,7 +7,7 @@
  * Return: Always returns 0.
  */
 
-int simple_shell()
+int simple_shell(void)
 {
 	char *line = NULL, *token, **array = NULL, *command_path = NULL;
 	size_t line_size = 0, i = 0;
@@ -18,7 +18,7 @@ int simple_shell()
 		if (isatty(STDIN_FILENO) == 1)
 			printf("#cisfun$ ");
 
-		signal(SIGQUIT, ctrld);
+		ctrld(); /*checks for ctrl + d press*/
 		read = getline(&line, &line_size, stdin);
 		if (!readcheck(read, &line))
 		break;
