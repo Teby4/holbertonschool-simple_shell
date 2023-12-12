@@ -7,7 +7,7 @@
 
 void ctrld(void)
 {
-	if	(feof(stdin)) 
+	if	(feof(stdin))
 	{
 		printf("\n");
 		exit(EXIT_SUCCESS);

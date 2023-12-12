@@ -2,5 +2,5 @@
 
 int main(void)
 {
-	return simple_shell();
+	return (simple_shell());
 }
