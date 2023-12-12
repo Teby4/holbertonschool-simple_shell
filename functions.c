@@ -51,7 +51,7 @@ int readcheck(ssize_t read, char **line)
  * exitcheck - Checks for exits and frees before quitting
  * @command_path: The command to check for exit.
  * @array: array to free
- * @line: line to free 
+ * @line: line to free
  */
 
 void exitcheck(char *command_path, char **array, char *line)
