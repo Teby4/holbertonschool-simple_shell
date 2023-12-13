@@ -38,7 +38,6 @@ int simple_shell(void)
 		if (*array[0] == '/')
 		executor(array[0], array);
 
-		free(array);
 		i = 0;
 	}
 	free(line);
