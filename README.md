@@ -4,6 +4,6 @@
 ### Patterns 
 	
 
-## Authors
+## Author
 
-* Felipe Olivera <a href="https://github.com/Teby4" rel="nofollow"><img align="center" alt="github" src="https://www.vectorlogo.zone/logos/github/github-tile.svg" height="24" /></a>
+* Felipe Olivera <a href="https://github.com/Teby4" rel="nofollow"><imgalign="center" alt="github" src="https://www.vectorlogo.zone/logos/github/github-tile.svg" height="24" /></a>

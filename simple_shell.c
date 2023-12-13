@@ -35,8 +35,8 @@ int simple_shell(void)
 		command_path = array[0];
 		exitcheck(command_path, array, line);
 
-		if (*command_path == '/')
-		executor(command_path, array);
+		if (array[0] == '/')
+		executor(array[0], array);
 
 		i = 0;
 	}

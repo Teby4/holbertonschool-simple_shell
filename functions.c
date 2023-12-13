@@ -2,7 +2,6 @@
 
 /**
  * ctrld - Handles the SIGQUIT signal by printing a newline and exiting
- * @sig: The signal number.
  */
 
 void ctrld(void)

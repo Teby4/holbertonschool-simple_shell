@@ -13,8 +13,8 @@
 
 extern char **environ;
 
-int simple_shell();
-void ctrld();
+int simple_shell(void);
+void ctrld(void);
 int readcheck(ssize_t read, char **line);
 void exitcheck(char *command_path, char **array, char *line);
 void executor(char *command_path, char **array);
