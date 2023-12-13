@@ -19,6 +19,7 @@ void ctrld(void)
  * @line: The line read from the input.
  *
  * Return: 1 if the loop should continue, 0 if it should break.
+ *
  */
 
 int readcheck(ssize_t read, char **line)

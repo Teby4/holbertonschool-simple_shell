@@ -5,6 +5,7 @@
  *                standard input, executes them in child processes, and waits
  *                for the completion of the child processes.
  * Return: Always returns 0.
+ *
  */
 
 int simple_shell(void)

@@ -10,6 +10,7 @@
  * This function creates a child process to execute the specified command using
  * the execve system call. It waits for the child process to complete and frees
  * the allocated memory for the command and path.
+ *
  */
 
 void executor(char *realpath, char **array)

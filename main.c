@@ -3,7 +3,6 @@
 /**
  * main - main
  * Return: shell
- *
  */
 
 int main(void)
