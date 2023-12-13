@@ -36,7 +36,7 @@ int readcheck(ssize_t read, char **line)
 	{
 		return (0);
 	}
-	if (read == 0 && (*line)[0] == '\0')
+	if (read == 0 || (*line)[0] == '\0')
 	{
 		free(*line);
 		exit(EXIT_SUCCESS);
