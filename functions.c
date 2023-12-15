@@ -81,12 +81,13 @@ int envcheck(char *command_path)
 
 	if (strcmp(command_path, "env") == 0)
 	{
-	while(envprint)
-	{
+		while(*envprint)
+		{
 		printf("%s\n", *envprint);
 		envprint++;
+		}
+		return (0);
 	}
-	return (0);
-	}
-	return (0);
+
+	return (-1);
 }
