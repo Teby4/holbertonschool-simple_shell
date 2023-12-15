@@ -40,6 +40,7 @@ int simple_shell(void)
 		executor(array[0], array);
 
 		i = 0;
+		free(array);
 	}
 	free(line);
 	return (0);

@@ -35,6 +35,5 @@ void executor(char *realpath, char **array)
 	else
 	{
 		wait(&status);
-		free(array);
 	}
 }
