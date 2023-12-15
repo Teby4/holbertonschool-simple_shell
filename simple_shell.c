@@ -5,7 +5,6 @@
  *                standard input, executes them in child processes, and waits
  *                for the completion of the child processes.
  * Return: Always returns 0.
- *
  */
 
 int simple_shell(void)
@@ -35,8 +34,9 @@ int simple_shell(void)
 		array[i] = NULL;
 		command_path = array[0];
 		exitcheck(command_path, array, line);
+		envcheck(command_path);
 
-		if (*array[0] == '/')
+		if (stat(array[0], &perms) == 0)
 		executor(array[0], array);
 
 		i = 0;

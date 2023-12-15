@@ -18,6 +18,9 @@ void executor(char *realpath, char **array)
 	pid_t pid;
 	int status;
 
+	if (realpath == NULL)
+		return;
+
 	pid = fork();
 
 	if (pid == 0)

@@ -54,10 +54,39 @@ int readcheck(ssize_t read, char **line)
 
 void exitcheck(char *command_path, char **array, char *line)
 {
+	if (command_path == NULL)
+		return;
+
 	if (strcmp(command_path, "exit") == 0)
 	{
 		free(array);
 		free(line);
 		exit(EXIT_SUCCESS);
 	}
+}
+
+
+/**
+ * envcheck - Check and print environment variables.
+ * @command_path: The command to check for (e.g., "env").
+ *
+ * Description: if commandpath = env prints env
+ *
+ * @command_path: The command to check.
+ */
+
+int envcheck(char *command_path)
+{
+	char **envprint = environ;
+
+	if (strcmp(command_path, "env") == 0)
+	{
+	while(envprint)
+	{
+		printf("%s\n", *envprint);
+		envprint++;
+	}
+	return (0);
+	}
+	return (0);
 }
