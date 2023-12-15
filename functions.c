@@ -87,7 +87,6 @@ int envcheck(char *command_path)
 		envprint++;
 		}
 		return (0);
-
 	}
 
 	return (-1);
