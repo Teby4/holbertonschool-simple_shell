@@ -9,7 +9,7 @@
 
 int simple_shell(void)
 {
-	char *line = NULL, *token, **array = NULL, *command_path = NULL;
+	char *line = NULL, *token, **array = NULL, *command_path;
 	size_t line_size = 0, i = 0;
 	ssize_t read;
 
@@ -29,18 +29,23 @@ int simple_shell(void)
 		{
 			array[i] = token;
 			token = strtok(NULL, " \t\n");
-			i++;
-		}
+			i++; }
 		array[i] = NULL;
+
 		command_path = array[0];
 		exitcheck(command_path, array, line);
 		envcheck(command_path);
 
+		array[0] = get_path(array[0]);
+
 		if (stat(array[0], &perms) == 0)
 		executor(array[0], array);
 
-		i = 0;
+		if (stat(array[0], &perms) == -1 && command_path != NULL)
+		printf("%s: command not found\n", array[0]);
+
 		free(array);
+		i = 0;
 	}
 	free(line);
 	return (0);

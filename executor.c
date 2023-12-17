@@ -37,3 +37,40 @@ void executor(char *realpath, char **array)
 		wait(&status);
 	}
 }
+
+/**
+ * get_path - Searches for an executable command in the path
+ *
+ * Return: full path
+ * @command_path: command path
+ */
+
+char *get_path(char *command_path)
+{
+	char *path_token, *command, *path;
+
+	if (stat(command_path, &perms) == 0)
+	return (command_path);
+
+	path = getenv("PATH");
+	if (path != NULL)
+	{
+		path_token = strtok(path, ":");
+		while (path_token)
+		{
+			command = malloc(strlen(path_token) + strlen(command_path) + 2);
+			sprintf(command, "%s/%s", path_token, command_path);
+
+			if (stat(command, &perms) == 0)
+			{
+				command_path = command;
+				break;
+			}
+
+			free(command);
+			path_token = strtok(NULL, ":");
+		}
+	}
+
+	return (command_path);
+}

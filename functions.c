@@ -71,7 +71,7 @@ void exitcheck(char *command_path, char **array, char *line)
  * @command_path: The command to check for (e.g., "env").
  *
  * Description: if commandpath = env prints env
- *
+ * Return: 1
  * @command_path: The command to check.
  */
 
@@ -81,7 +81,7 @@ int envcheck(char *command_path)
 
 	if (strcmp(command_path, "env") == 0)
 	{
-		while(*envprint)
+		while (*envprint)
 		{
 		printf("%s\n", *envprint);
 		envprint++;

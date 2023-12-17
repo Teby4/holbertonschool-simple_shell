@@ -22,5 +22,7 @@ int readcheck(ssize_t read, char **line);
 void exitcheck(char *command_path, char **array, char *line);
 void executor(char *command_path, char **array);
 int envcheck(char *command_path);
+char *get_path(char *command_path);
 
 #endif
+
