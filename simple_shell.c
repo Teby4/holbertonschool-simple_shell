@@ -34,15 +34,15 @@ int simple_shell(void)
 		command_path = array[0];
 		exitcheck(command_path, array, line);
 		envcheck(command_path);
-		array[0] = get_path(array[0]);
+		command_path = get_path(array[0]);
+		array[0] = command_path;
 
 		if (stat(array[0], &perms) == 0)
-		{
 		executor(array[0], array);
-		free(array[0]); }
 		if (stat(array[0], &perms) == -1 && command_path != NULL)
 		printf("%s: command not found\n", array[0]);
 
+		free(command_path);
 		free(array);
 		i = 0;
 	}
