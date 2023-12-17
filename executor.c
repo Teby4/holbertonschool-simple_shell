@@ -88,3 +88,36 @@ char *get_path(char *command_path)
 
 	return (command_path);
 }
+
+/**
+ * executepath - Execute a command using the given command path and arguments.
+ *
+ * @command_path: The full path to the executable.
+ * @array: An array of strings representing the command and its arguments.
+ * Return: On success, returns the command_path
+ */
+
+char *executepath(char *command_path, char **array)
+{
+	if (stat(command_path, &perms) == 0)
+	{
+		executor(array[0], array);
+		return (command_path);
+	}
+	else
+	{
+		command_path = get_path(array[0]);
+		array[0] = command_path;
+
+		if (stat(array[0], &perms) == 0)
+			executor(array[0], array);
+
+		if (stat(array[0], &perms) == -1 && command_path != NULL)
+			printf("./hsh: 1: %s: not found", array[0]);
+
+		free(command_path);
+		return (command_path);
+	}
+
+	return (NULL);
+}
