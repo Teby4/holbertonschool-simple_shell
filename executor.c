@@ -29,7 +29,6 @@ int executor(char *realpath, char **array)
 		{
 			perror("Error in execve");
 			free(array);
-			exit(EXIT_FAILURE);
 		}
 	}
 	else
