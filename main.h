@@ -20,9 +20,9 @@ int simple_shell(void);
 void ctrld(void);
 int readcheck(ssize_t read, char **line);
 void exitcheck(char *command_path, char **array, char *line);
-void executor(char *command_path, char **array);
+int executor(char *command_path, char **array);
 int envcheck(char *command_path);
 char *get_path(char *command_path);
-char *executepath(char *command_path, char **array);
+int *executepath(char *command_path, char **array);
 
 #endif

@@ -13,7 +13,7 @@
  *
  */
 
-void executor(char *realpath, char **array)
+int executor(char *realpath, char **array)
 {
 	pid_t pid;
 	int status;
@@ -35,7 +35,13 @@ void executor(char *realpath, char **array)
 	else
 	{
 		wait(&status);
+		if (WIFEXITED(status))
+		{
+			free(args);
+			return (WEXITSTATUS(status));
+		}
 	}
+	return (0);
 }
 
 /**
@@ -97,27 +103,29 @@ char *get_path(char *command_path)
  * Return: On success, returns the command_path
  */
 
-char *executepath(char *command_path, char **array)
+int *executepath(char *command_path, char **array)
 {
+	int returnvalue = 0;
+
 	if (stat(command_path, &perms) == 0)
 	{
-		executor(array[0], array);
-		return (command_path);
+		returnvalue = executor(array[0], array);
+		return (returnvalue);
 	}
 	else
 	{
 		command_path = get_path(array[0]);
 		array[0] = command_path;
 
-		if (stat(array[0], &perms) == 0)
-			executor(array[0], array);
-
-		if (stat(array[0], &perms) == -1 && command_path != NULL)
+		if (stat(array[0], &perms) == -1)
 			printf("./hsh: 1: %s: not found", array[0]);
 
+		if (stat(array[0], &perms) == 0)
+			returnvalue = executor(array[0], array);
+
 		free(command_path);
-		return (command_path);
+		return (returnvalue);
 	}
 
-	return (NULL);
+	return (-1);
 }
