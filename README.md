@@ -5,18 +5,19 @@
 A basic implementation of a shell program in C, inspired by the Unix shell. This simple shell reads commands from standard input, executes them in child processes, and waits for their completion.
 
 ## Requirements.
-Your Shell should:
 
-Display a prompt and wait for the user to type a command. A command line always ends with a new line.
-The prompt is displayed again each time a command has been executed.
-If an executable cannot be found, print an error message and display the prompt again.
-Handle errors.
-Handle command lines with arguments
-You have to handle the “end of file” condition (Ctrl+D)
-Handle the PATH
-fork must not be called if the command doesn’t exist
-Implement the exit built-in, that exits the shell
-Implement the env built-in, that prints the current environment
+- Your Shell should:
+
+- Display a prompt and wait for the user to type a command
+- The prompt is displayed again each time a command has been executed
+- - If an executable cannot be found, print an error message and display the prompt again
+- Handle errors.
+- Handle command lines with arguments
+- You have to handle the “end of file” condition (Ctrl+D)
+- Handle the PATH
+- fork must not be called if the command doesn’t exist
+- Implement the exit built-in, that exits the shell
+- Implement the env built-in, that prints the current environment
 
 ## Compilation
 ```js
