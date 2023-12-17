@@ -15,36 +15,32 @@
 
 int executor(char *realpath, char **array)
 {
-	pid_t pid;
-	int status;
+    pid_t pid;
+    int status, exit_status = 0;
 
-	if (realpath == NULL)
-		return (0);
+    if (realpath == NULL)
+        return (exit_status);
 
-	pid = fork();
+    pid = fork();
 
-	if (pid == 0)
-	{
-		if (execve(realpath, array, environ) == -1)
-		{
-			perror("Error in execve");
-			free(array);
-		}
-	}
-	else if (pid > 0)
-	{
-		waitpid(pid, &status, 0);
-		if (WIFEXITED(status))
-		{
-			return (WEXITSTATUS(status));
-		}
-	}
-	else
+    if (pid == 0)
     {
-        perror("Error in fork");
-        return (-1);
+        if (execve(realpath, array, environ) == -1)
+        {
+            perror("Error in execve");
+            exit(EXIT_FAILURE);
+        }
     }
-	return (-1);
+    else
+    {
+        waitpid(pid, &status, 0);
+        if (WIFEXITED(status))
+        {
+            exit_status = WEXITSTATUS(status);
+        }
+    }
+
+    return (exit_status);
 }
 
 /**
