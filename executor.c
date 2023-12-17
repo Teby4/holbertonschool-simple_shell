@@ -31,15 +31,20 @@ int executor(char *realpath, char **array)
 			free(array);
 		}
 	}
-	else
+	else if (pid > 0)
 	{
-		wait(&status);
+		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
 		{
 			return (WEXITSTATUS(status));
 		}
 	}
-	return (0);
+	else
+    {
+        perror("Error in fork");
+        return (-1);
+    }
+	return (-1);
 }
 
 /**
