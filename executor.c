@@ -35,11 +35,6 @@ void executor(char *realpath, char **array)
 	else
 	{
 		wait(&status);
-		if (WIFEXITED(status))
-        {
-            int exit_status = WEXITSTATUS(status);
-            exit(exit_status);
-        }
 	}
 }
 
