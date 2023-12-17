@@ -10,7 +10,7 @@ A basic implementation of a shell program in C, inspired by the Unix shell. This
 
 - Display a prompt and wait for the user to type a command
 - The prompt is displayed again each time a command has been executed
-- - If an executable cannot be found, print an error message and display the prompt again
+- If an executable cannot be found, print an error message and display the prompt again
 - Handle errors.
 - Handle command lines with arguments
 - You have to handle the “end of file” condition (Ctrl+D)
@@ -30,7 +30,7 @@ $ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 $ valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes./hsh
 ```
 
-### flowchart
+## Flowchart
 ![Screenshot_2](https://github.com/Teby4/holbertonschool-simple_shell/assets/135641220/dba19108-a386-4653-9179-3d97564d2fc2)
 
 ## Author
