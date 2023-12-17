@@ -19,7 +19,7 @@ int executor(char *realpath, char **array)
 	int status;
 
 	if (realpath == NULL)
-		return;
+		return (0);
 
 	pid = fork();
 
@@ -37,7 +37,6 @@ int executor(char *realpath, char **array)
 		wait(&status);
 		if (WIFEXITED(status))
 		{
-			free(args);
 			return (WEXITSTATUS(status));
 		}
 	}
