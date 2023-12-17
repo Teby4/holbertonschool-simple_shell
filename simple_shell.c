@@ -42,7 +42,7 @@ int simple_shell(void)
 		if (stat(array[0], &perms) == -1 && command_path != NULL)
 		printf("%s: command not found\n", array[0]);
 
-		free(command_path);
+
 		free(array);
 		i = 0;
 	}
