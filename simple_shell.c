@@ -31,19 +31,17 @@ int simple_shell(void)
 			token = strtok(NULL, " \t\n");
 			i++; }
 		array[i] = NULL;
-
 		command_path = array[0];
 		exitcheck(command_path, array, line);
 		envcheck(command_path);
-
 		array[0] = get_path(array[0]);
 
 		if (stat(array[0], &perms) == 0)
 		executor(array[0], array);
-
 		if (stat(array[0], &perms) == -1 && command_path != NULL)
 		printf("%s: command not found\n", array[0]);
 
+		free(array[0]);
 		free(array);
 		i = 0;
 	}

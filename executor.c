@@ -42,34 +42,48 @@ void executor(char *realpath, char **array)
  * get_path - Searches for an executable command in the path
  *
  * Return: full path
- * @command_path: command path
+ * @command_path: command
  */
 
 char *get_path(char *command_path)
 {
-	char *path_token, *command, *path;
+	char *path_token, *command, *path, *result;
 
 	if (stat(command_path, &perms) == 0)
-	return (command_path);
+		return (command_path);
 
 	path = getenv("PATH");
-	if (path != NULL)
+	if (path == NULL)
 	{
+		fprintf(stderr, "Error: PATH environment variable is not set\n");
+		return (NULL);
+	}
+
+	while (path != NULL)
+	{
+		path_token = strtok(NULL, ":");
 		path_token = strtok(path, ":");
-		while (path_token)
+		while (path_token != NULL)
 		{
 			command = malloc(strlen(path_token) + strlen(command_path) + 2);
+			if (command == NULL)
+			{
+				fprintf(stderr, "Error: Failed to allocate memory\n");
+				return (NULL);
+			}
 			sprintf(command, "%s/%s", path_token, command_path);
 
-			if (stat(command, &perms) == 0)
+			if (access(command, X_OK) == 0)
 			{
-				command_path = command;
-				break;
+			result = strdup(command);
+			free(command);
+			return (result);
 			}
 
 			free(command);
 			path_token = strtok(NULL, ":");
 		}
+		path++;
 	}
 
 	return (command_path);
