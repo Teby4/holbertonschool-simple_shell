@@ -106,6 +106,11 @@ int executepath(char *command_path, char **array)
 {
 	int returnvalue = 0;
 
+	if (array == NULL || array[0] == NULL)
+    {
+        return (-1);
+    }
+
 	if (stat(command_path, &perms) == 0)
 	{
 		returnvalue = executor(array[0], array);
