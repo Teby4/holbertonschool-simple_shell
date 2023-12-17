@@ -102,7 +102,7 @@ char *get_path(char *command_path)
  * Return: On success, returns the command_path
  */
 
-int *executepath(char *command_path, char **array)
+int executepath(char *command_path, char **array)
 {
 	int returnvalue = 0;
 
