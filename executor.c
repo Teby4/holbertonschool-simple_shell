@@ -79,7 +79,7 @@ char *get_path(char *command_path)
 			free(command);
 			return (result);
 			}
-			free(result);
+
 			free(command);
 			path_token = strtok(NULL, ":");
 		}
