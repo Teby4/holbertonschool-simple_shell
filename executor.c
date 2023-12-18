@@ -114,7 +114,7 @@ int executepath(char *command_path, char **array)
 		}
 		else
 		{
-			fprintf(stderr "./hsh: 1: %s: not found\n", array[0]);
+			fprintf(stderr, "./hsh: 1: %s: not found\n", array[0]);
 			turnvalue = 127;
 		}
 
