@@ -56,7 +56,7 @@ int readcheck(ssize_t read, char **line)
  * @line: line to free
  */
 
-void exitcheck(char *command_path, char **array, char *line, int count)
+void exitcheck(char *command_path, char **array, char *line)
 {
 	if (command_path == NULL)
 		return;
@@ -65,7 +65,7 @@ void exitcheck(char *command_path, char **array, char *line, int count)
 	{
 		free(array);
 		free(line);
-		exit(count);
+		exit(0);
 	}
 }
 

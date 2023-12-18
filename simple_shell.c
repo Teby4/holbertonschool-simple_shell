@@ -10,7 +10,7 @@
 int simple_shell(void)
 {
 	char *line = NULL, *token, **array = NULL, *command_path;
-	size_t line_size = 0, i = 0, count;
+	size_t line_size = 0, i = 0;
 	int turnvalue = 0;
 
 	while (1)
@@ -36,7 +36,7 @@ int simple_shell(void)
 		if (array[0] != NULL)
 		{
 		command_path = array[0];
-		exitcheck(command_path, array, line, count);
+		exitcheck(command_path, array, line);
 		envcheck(command_path);
 
 		if (strcmp(command_path, "env") != 0)
@@ -44,7 +44,6 @@ int simple_shell(void)
 		}
 		free(array);
 		i = 0;
-		count++;
 	}
 	free(line);
 	return (turnvalue);
