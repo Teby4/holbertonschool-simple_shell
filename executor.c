@@ -15,32 +15,32 @@
 
 int executor(char *realpath, char **array)
 {
-    pid_t pid;
-    int status, exit_status = 0;
+	pid_t pid;
+	int status, exit_status = 0;
 
-    if (realpath == NULL)
-        return (exit_status);
+	if (realpath == NULL)
+		return (exit_status);
 
-    pid = fork();
+	pid = fork();
 
-    if (pid == 0)
-    {
-        if (execve(realpath, array, environ) == -1)
-        {
-            perror("Error in execve");
-            exit(EXIT_FAILURE);
-        }
-    }
-    else
-    {
-        waitpid(pid, &status, 0);
-        if (WIFEXITED(status))
-        {
-            exit_status = WEXITSTATUS(status);
-        }
-    }
+	if (pid == 0)
+	{
+		if (execve(realpath, array, environ) == -1)
+		{
+			perror("Error in execve");
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+		{
+			exit_status = WEXITSTATUS(status);
+		}
+	}
 
-    return (exit_status);
+	return (exit_status);
 }
 
 /**
@@ -52,46 +52,41 @@ int executor(char *realpath, char **array)
 
 char *get_path(char *command_path)
 {
-	char *path_token, *command, *path, *result;
-
-	if (stat(command_path, &perms) == 0)
-		return (command_path);
+	char *path_token, *command, *path, *result, *temp_path;
 
 	path = getenv("PATH");
 	if (path == NULL)
 	{
-		fprintf(stderr, "Error: PATH environment variable is not set\n");
-		return (NULL);
-	}
+		fprintf(stderr, "Error: PATH");
+		return (NULL); }
 
-	while (path != NULL)
+	temp_path = strdup(path);
+	if (temp_path != NULL)
 	{
-		path_token = strtok(NULL, ":");
-		path_token = strtok(path, ":");
+		path_token = strtok(temp_path, ":");
 		while (path_token != NULL)
 		{
 			command = malloc(strlen(path_token) + strlen(command_path) + 2);
 			if (command == NULL)
 			{
-				fprintf(stderr, "Error: Failed to allocate memory\n");
-				return (NULL);
-			}
+				fprintf(stderr, "malloc");
+				free(temp_path);
+				return (NULL); }
 			sprintf(command, "%s/%s", path_token, command_path);
 
 			if (access(command, X_OK) == 0)
 			{
-			result = strdup(command);
-			free(command);
-			return (result);
+				result = strdup(command);
+				free(command);
+				free(temp_path);
+				return (result);
 			}
-
 			free(command);
 			path_token = strtok(NULL, ":");
 		}
-		path++;
 	}
-
-	return (command_path);
+	free(temp_path);
+	return (strdup(command_path));
 }
 
 /**
@@ -104,32 +99,31 @@ char *get_path(char *command_path)
 
 int executepath(char *command_path, char **array)
 {
-	int returnvalue = 0;
-
-	if (array == NULL || array[0] == NULL)
-    {
-        return (-1);
-    }
+	char *full_path;
+	int turnvalue = 0;
+	struct stat perms;
 
 	if (stat(command_path, &perms) == 0)
 	{
-		returnvalue = executor(array[0], array);
-		return (returnvalue);
+		turnvalue = executor(array[0], array);
+		return (turnvalue);
 	}
 	else
 	{
-		command_path = get_path(array[0]);
-		array[0] = command_path;
+		full_path = get_path(command_path);
 
-		if (stat(array[0], &perms) == -1)
-			printf("./hsh: 1: %s: not found", array[0]);
+		if (full_path != NULL && stat(full_path, &perms) != -1)
+		{
+			turnvalue = executor(full_path, array);
+		}
+		else
+		{
+			printf("./hsh: 1: %s: not found\n", array[0]);
+			turnvalue = -1;
+		}
 
-		if (stat(array[0], &perms) == 0)
-			returnvalue = executor(array[0], array);
-
-		free(command_path);
-		return (returnvalue);
+		free(full_path);
 	}
 
-	return (-1);
+	return (turnvalue);
 }

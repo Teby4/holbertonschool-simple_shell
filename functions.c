@@ -2,13 +2,15 @@
 
 /**
  * ctrld - Handles the SIGQUIT signal by printing a newline and exiting
+ * @sig: The signal number.
  */
 
-void ctrld(void)
+void ctrld(int sig)
 {
-	if	(feof(stdin))
+	if (sig == SIGINT)
 	{
-		printf("\n");
+		write(STDOUT_FILENO, "\n", 1);
+
 		exit(EXIT_SUCCESS);
 	}
 }
@@ -26,20 +28,22 @@ int readcheck(ssize_t read, char **line)
 {
 	char *newline;
 
+	if (read == -1)
+	{
+		perror("getline");
+		return (0);
+	}
+
+	if (read == 0)
+	{
+		free(*line);
+		return (0);
+	}
+
 	newline = strchr(*line, '\n');
 	if (newline != NULL)
 	{
 		*newline = '\0';
-	}
-
-	if (read == -1)
-	{
-		return (0);
-	}
-	if (read == 0 || (*line)[0] == '\0')
-	{
-		free(*line);
-		exit(EXIT_SUCCESS);
 	}
 
 	return (1);
@@ -89,5 +93,5 @@ int envcheck(char *command_path)
 		return (0);
 	}
 
-	return (-1);
+	return (1);
 }

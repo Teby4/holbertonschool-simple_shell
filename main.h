@@ -14,10 +14,8 @@
 
 extern char **environ;
 
-struct stat perms;
-
 int simple_shell(void);
-void ctrld(void);
+void ctrld(int sig);
 int readcheck(ssize_t read, char **line);
 void exitcheck(char *command_path, char **array, char *line);
 int executor(char *command_path, char **array);
