@@ -65,7 +65,7 @@ void exitcheck(char *command_path, char **array, char *line)
 	{
 		free(array);
 		free(line);
-		exit(EXIT_SUCCESS);
+		exit(2);
 	}
 }
 
