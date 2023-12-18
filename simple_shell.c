@@ -15,17 +15,14 @@ int simple_shell(void)
 
 	while (1)
 	{
-		if (isatty(STDIN_FILENO)) {
+		if (isatty(STDIN_FILENO))
 		printf("#cisfun$ ");
-		}
 
 		signal(SIGINT, ctrld);
-		if (getline(&line, &line_size, stdin) == -1) {
-		break;
-		}
-		if (!readcheck(strlen(line), &line)) {
-		break;
-		}
+		if (getline(&line, &line_size, stdin) == -1)
+			break;
+		if (!readcheck(strlen(line), &line))
+			break;
 
 		array = malloc(sizeof(char *) * 1024);
 		token = strtok(line, " \t\n");
@@ -33,13 +30,12 @@ int simple_shell(void)
 		{
 			array[i] = token;
 			token = strtok(NULL, " \t\n");
-			i++; 
+			i++;
 		}
 		array[i] = NULL;
 		if (array[0] != NULL)
 		{
 		command_path = array[0];
-
 		exitcheck(command_path, array, line);
 		envcheck(command_path);
 

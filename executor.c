@@ -5,11 +5,7 @@
  *
  * @realpath: The full path to the executable.
  * @array: An array of strings representing the command and its arguments.
- *
- * Description:
- * This function creates a child process to execute the specified command using
- * the execve system call. It waits for the child process to complete and frees
- * the allocated memory for the command and path.
+ * Return: return
  *
  */
 
