@@ -12,17 +12,20 @@ int simple_shell(void)
 	char *line = NULL, *token, **array = NULL, *command_path;
 	size_t line_size = 0, i = 0;
 	int turnvalue = 0;
-	ssize_t read;
 
 	while (1)
 	{
-		if (isatty(STDIN_FILENO) == 1)
-			printf("#cisfun$ ");
+		if (isatty(STDIN_FILENO)) {
+		printf("#cisfun$ ");
+		}
 
 		signal(SIGINT, ctrld);
-		read = getline(&line, &line_size, stdin);
-		if (!readcheck(read, &line))
+		if (getline(&line, &line_size, stdin) == -1) {
 		break;
+		}
+		if (!readcheck(strlen(line), &line)) {
+		break;
+		}
 
 		if ((line)[0] != '\0' && (line)[0] != '\n' && (line)[0] != ' ')
 		{
