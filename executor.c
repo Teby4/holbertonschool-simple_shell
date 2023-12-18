@@ -53,7 +53,6 @@ char *get_path(char *command_path)
 	path = getenv("PATH");
 	if (path == NULL)
 	{
-		fprintf(stderr, "Error: PATH");
 		return (NULL); }
 
 	temp_path = strdup(path);
