@@ -114,8 +114,8 @@ int executepath(char *command_path, char **array)
 		}
 		else
 		{
-			printf("./hsh: 1: %s: not found\n", array[0]);
-			turnvalue = -1;
+			27;printf("./hsh: 1: %s: not found\n", array[0]);
+			turnvalue = 127
 		}
 
 		free(full_path);
