@@ -24,7 +24,7 @@ int executor(char *realpath, char **array)
 		if (execve(realpath, array, environ) == -1)
 		{
 			perror("Error in execve");
-			exit(2);
+			exit(0);
 		}
 	}
 	else
