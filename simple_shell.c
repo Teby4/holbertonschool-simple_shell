@@ -27,7 +27,7 @@ int simple_shell(void)
 		break;
 		}
 
-		if ((line)[0] != '\0' && (line)[0] != '\n' && (line)[0] != ' ')
+		if ((line)[0] != '\0' && (line)[0] != '\n')
 		{
 		array = malloc(sizeof(char *) * 1024);
 		token = strtok(line, " \t\n");
