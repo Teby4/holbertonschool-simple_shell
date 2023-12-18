@@ -24,7 +24,7 @@ int executor(char *realpath, char **array)
 		if (execve(realpath, array, environ) == -1)
 		{
 			perror("Error in execve");
-			exit(EXIT_FAILURE);
+			exit(2);
 		}
 	}
 	else
@@ -114,7 +114,7 @@ int executepath(char *command_path, char **array)
 		}
 		else
 		{
-			printf("./hsh: 1: %s: not found\n", array[0]);
+			fprintf(stderr "./hsh: 1: %s: not found\n", array[0]);
 			turnvalue = 127;
 		}
 
