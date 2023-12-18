@@ -33,17 +33,20 @@ int simple_shell(void)
 		{
 			array[i] = token;
 			token = strtok(NULL, " \t\n");
-			i++; }
+			i++; 
+		}
 		array[i] = NULL;
+		if (array[0] != NULL)
+		{
 		command_path = array[0];
+
 		exitcheck(command_path, array, line);
 		envcheck(command_path);
 
 		if (strcmp(command_path, "env") != 0)
 		turnvalue = executepath(command_path, array);
-
+		}
 		free(array);
-
 		i = 0;
 	}
 
