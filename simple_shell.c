@@ -27,8 +27,6 @@ int simple_shell(void)
 		break;
 		}
 
-		if ((line)[0] != '\0' && (line)[0] != '\n')
-		{
 		array = malloc(sizeof(char *) * 1024);
 		token = strtok(line, " \t\n");
 		while (token)
@@ -45,7 +43,7 @@ int simple_shell(void)
 		turnvalue = executepath(command_path, array);
 
 		free(array);
-		}
+
 		i = 0;
 	}
 
